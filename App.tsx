@@ -6,6 +6,9 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
 import Home from './screens/Home';
 import Soon from './screens/Soon';
+import FocusedStatusBar from './components/FocusedStatusBar';
+import NavigationBar from './components/NavigationBar';
+import { COLORS } from './assets/constants';
 
 const Stack = createStackNavigator()
 
@@ -13,18 +16,20 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: "transparent"
+    background: COLORS.black
   }
 }
 
 export default function App() {
     return (
-      <NavigationContainer theme={theme}>
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Soon" component={Soon} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <NavigationContainer theme={theme}>
+          <FocusedStatusBar />
+            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
+              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="Soon" component={Soon} />
+            </Stack.Navigator>
+          <NavigationBar page="Home" />
+        </NavigationContainer>
     );
   }
 
@@ -32,7 +37,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.black,
     alignItems: 'center',
     justifyContent: 'center',
   },
