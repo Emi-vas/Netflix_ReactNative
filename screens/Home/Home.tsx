@@ -6,7 +6,7 @@ import Categories from '../../components/Categories';
 const Home = () => {
       /*   categories.items.map(item => <Categories categorie={item} key={item.id}/>) */
     return (
-        <View >
+        <View>
             <FlatList
                 data={categories.items}
                 renderItem={({ item }) => <Categories categorie={item} />}

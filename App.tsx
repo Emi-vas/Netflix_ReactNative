@@ -9,6 +9,8 @@ import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 import Home from './screens/Home';
 import Soon from './screens/Soon';
+import Search from "./screens/Search"
+import Download from "./screens/Download"
 import FocusedStatusBar from './components/FocusedStatusBar';
 import { COLORS } from './assets/constants';
 
@@ -35,6 +37,10 @@ export default function App() {
                     return <AntDesign name="home" size={24} color={focused ? "white" : COLORS.gray}/>
                   } else if (route.name == "Soon") {
                     return <MaterialIcons name="video-library" size={24} color={focused ? "white" : COLORS.gray}/>
+                  } else if (route.name == "Search") {
+                    return <Ionicons name="search" size={24} color={focused ? "white" : COLORS.gray} />
+                  } else if (route.name == "Download") {
+                    return <AntDesign name="download" size={24} color={focused ? "white" : COLORS.gray}/>
                   }
                 },
                 tabBarActiveTintColor: 'white', //text
@@ -44,7 +50,6 @@ export default function App() {
                     height : 50,
                     paddingVertical: 5,
                     backgroundColor: COLORS.black,
-                    position: 'absolute',
                     borderTopWidth: 0,
                     paddingBottom: 5
                 }
@@ -52,6 +57,8 @@ export default function App() {
            >
               <tab.Screen name="Home" component={Home} />
               <tab.Screen name="Soon" component={Soon} />
+              <tab.Screen name="Search" component={Search} />
+              <tab.Screen name="Download" component={Download} />
            </tab.Navigator>
         </NavigationContainer>
     );

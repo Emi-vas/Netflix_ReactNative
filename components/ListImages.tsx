@@ -1,4 +1,4 @@
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet, FlatList } from 'react-native';
 import { Movie } from '../assets/types';
 
 interface Props {
@@ -13,7 +13,7 @@ const ListImages = ({ movies }: Props) => {
                 flexDirection: "row"
             }}
         >
-            {
+{/*             {
                 movies.map(movie => (
                     <Image 
                         style={styles.image} 
@@ -21,7 +21,21 @@ const ListImages = ({ movies }: Props) => {
                         key={movie.id}
                     />
                 ))
-            }
+            } */}
+
+            <FlatList
+                data={movies}
+                renderItem={({ item }) => (
+                    <Image 
+                        style={styles.image} 
+                        source={{uri: item.poster}} 
+                        key={item.id}
+                    />
+                )}
+                keyExtractor={(item) => item.id}
+                showsVerticalScrollIndicator={false}
+                horizontal={true}
+            />
         </View>
     );
 };
