@@ -11,11 +11,13 @@ interface Props {
 
 const Categories = ({ categorie }: Props) => {
     return (
-        <View>
+        <View style={{ marginTop: 15 }}>
             <Text
                 style={{
                     color: COLORS.white,
-                    fontSize: 19
+                    fontSize: 19,
+                    padding: 3,
+                    marginLeft: 10
                 }}
             >{categorie.title}</Text>
 
