@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons'; 
@@ -13,6 +12,8 @@ import Search from "./screens/Search"
 import Download from "./screens/Download"
 import FocusedStatusBar from './components/FocusedStatusBar';
 import { COLORS } from './assets/constants';
+import MovieDetailsScreen from './screens/MovieDetailsScreen';
+import HomeStack from './screens/Home/HomeStack';
 
 const tab = createBottomTabNavigator()
 
@@ -52,10 +53,12 @@ export default function App() {
                     backgroundColor: COLORS.black,
                     borderTopWidth: 0,
                     paddingBottom: 5
-                }
+                },
+                headerShown: false
+                
               })}
            >
-              <tab.Screen name="Home" component={Home} />
+              <tab.Screen name="Home" component={MovieDetailsScreen} />
               <tab.Screen name="Soon" component={Soon} />
               <tab.Screen name="Search" component={Search} />
               <tab.Screen name="Download" component={Download} />
