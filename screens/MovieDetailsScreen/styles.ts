@@ -28,5 +28,33 @@ export const styles = StyleSheet.create({
         color: "#398351",
         fontWeight: "bold",
         marginLeft: 10
+    },
+
+    //btn
+    playBtn: {
+        backgroundColor: "white",
+        padding: 9,
+        margin: 10,
+        borderRadius: 5,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "baseline"
+    },
+    dlBtn: {
+        backgroundColor: COLORS.gray,
+        padding: 9,
+        marginHorizontal: 10,
+        borderRadius: 5,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "baseline"
+    },
+
+
+    //bloc icon
+    blocIcons: {
+        padding: 20,
+        margin: 10,
+        alignItems: "center"
     }
 })

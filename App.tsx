@@ -58,8 +58,8 @@ export default function App() {
                 
               })}
            >
-              <tab.Screen name="Home" component={MovieDetailsScreen} />
-              <tab.Screen name="Soon" component={Soon} />
+              <tab.Screen name="Home" component={HomeStack} />
+              <tab.Screen name="Soon" component={MovieDetailsScreen} />
               <tab.Screen name="Search" component={Search} />
               <tab.Screen name="Download" component={Download} />
            </tab.Navigator>
