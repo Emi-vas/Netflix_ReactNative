@@ -4,6 +4,7 @@ import { styles } from './styles';
 import { MaterialIcons, Entypo, MaterialCommunityIcons, Octicons, Fontisto  } from '@expo/vector-icons'; 
 import movie from "../../assets/data/movie"
 import { COLORS } from '../../assets/constants';
+import EpisodeMin from '../../components/EpisodeMin';
 
 
 const MovieDetailsScreen = () => {
@@ -74,7 +75,9 @@ const MovieDetailsScreen = () => {
                 </View>
             </View>
 
-            
+            <EpisodeMin episodeData={movie.seasons.items[0].episodes.items[0]}/>
+
+
         </ScrollView>
     );
 };
