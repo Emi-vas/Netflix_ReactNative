@@ -56,5 +56,11 @@ export const styles = StyleSheet.create({
         padding: 20,
         margin: 10,
         alignItems: "center"
+    },
+    picker: {
+        color: "white",
+        margin: 5,
+        marginLeft: 15,
+        width: 130
     }
 })
