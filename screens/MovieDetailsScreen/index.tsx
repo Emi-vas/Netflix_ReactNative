@@ -8,6 +8,7 @@ import EpisodeMin from '../../components/EpisodeMin';
 import { Episode } from '../../assets/types';
 
 import {Picker} from "@react-native-picker/picker"
+import VideoPlayer from '../../components/VideoPlayer';
 
 const firstSeason: any = movie.seasons.items[0]
 
@@ -15,7 +16,7 @@ const MovieDetailsScreen = () => {
 
     const seasonName = movie.seasons.items.map(season => season.name)
     const [currentSeason, setCurrentSeason] = useState(firstSeason)
-
+    const [currentEpisode, setCurrentEpisode] = useState(firstSeason.episodes.items[0])
 
     return (
         <View>
@@ -27,10 +28,7 @@ const MovieDetailsScreen = () => {
                 renderItem={({ item }) => <EpisodeMin episodeData={item}/>}
                 ListHeaderComponent={(
                     <View>
-                        <Image
-                            source={{uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/netflix/ep0.jpg"}} 
-                            style={styles.image}
-                        />
+                        <VideoPlayer episode={currentEpisode} />
                         
                         <Text style={styles.title}>{movie.title}</Text>
                         
