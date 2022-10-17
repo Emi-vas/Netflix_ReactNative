@@ -1,11 +1,10 @@
-import {useState}from 'react';
+import {useRef, useState}from 'react';
 import { View, Text, Image, Pressable, FlatList } from 'react-native';
 import { styles } from './styles';
 import { MaterialIcons, Entypo, MaterialCommunityIcons, Octicons, Fontisto  } from '@expo/vector-icons'; 
 import movie from "../../assets/data/movie"
 import { COLORS } from '../../assets/constants';
 import EpisodeMin from '../../components/EpisodeMin';
-import { Episode } from '../../assets/types';
 
 import {Picker} from "@react-native-picker/picker"
 import VideoPlayer from '../../components/VideoPlayer';
@@ -13,21 +12,30 @@ import VideoPlayer from '../../components/VideoPlayer';
 const firstSeason: any = movie.seasons.items[0]
 
 const MovieDetailsScreen = () => {
+    const ref = useRef<any>(null)
 
     const seasonName = movie.seasons.items.map(season => season.name)
     const [currentSeason, setCurrentSeason] = useState(firstSeason)
     const [currentEpisode, setCurrentEpisode] = useState(firstSeason.episodes.items[0])
 
+    const scrollTop = () => {
+        ref.current?.scrollToOffset({animated: true, offset: 0 })
+    }
+
     return (
-        <View>
-
-
+        <View >
            {/*  <EpisodeMin episodeData={movie.seasons.items[0].episodes.items[0]}/> */}
             <FlatList 
+                ref={ref}
                 data={currentSeason.episodes.items}
-                renderItem={({ item }) => <EpisodeMin episodeData={item}/>}
+                renderItem={({ item }) => 
+                    <EpisodeMin 
+                        episodeData={item} 
+                        setCurrentEpisode={setCurrentEpisode} 
+                        scrollTop={scrollTop}
+                    />}
                 ListHeaderComponent={(
-                    <View>
+                    <View >
                         <VideoPlayer episode={currentEpisode} />
                         
                         <Text style={styles.title}>{movie.title}</Text>
@@ -40,7 +48,7 @@ const MovieDetailsScreen = () => {
                             <MaterialIcons name="hd" size={24} color="gray" />
                         </View>
 
-                        <Pressable onPress={() => {}} style={styles.playBtn}>
+                        <Pressable onPress={() => {scrollTop()}} style={styles.playBtn}>
                             <Text >
                                 <Entypo name="controller-play" size={24} color={COLORS.black} />
                                 {' '}

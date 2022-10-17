@@ -1,16 +1,24 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 import { Episode } from '../assets/types';
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from '../assets/constants';
 
 interface Props {
-    episodeData: Episode
+    episodeData: Episode,
+    setCurrentEpisode: (value: Episode) => void,
+    scrollTop: () => void
 }
 
-const EpisodeMin = ({episodeData} :Props) => {
+const EpisodeMin = ({episodeData, setCurrentEpisode, scrollTop} :Props) => {
     return (
-        <View style={styles.container}>
+        <Pressable 
+            style={styles.container}
+            onPress={() => {
+                setCurrentEpisode(episodeData)
+                scrollTop()
+            }}
+        >
             <View style={styles.bloc1}>
                 <Image 
                     source={{uri: episodeData.poster}} 
@@ -27,7 +35,7 @@ const EpisodeMin = ({episodeData} :Props) => {
                 </View>
             </View>
             <Text style={styles.txtGray}>{episodeData.plot}</Text>
-        </View>
+        </Pressable>
     );
 };
 
