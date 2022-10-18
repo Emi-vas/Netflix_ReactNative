@@ -1,4 +1,5 @@
-import { Image, View, StyleSheet, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Image, View, StyleSheet, FlatList, Pressable } from 'react-native';
 import { Movie } from '../assets/types';
 
 interface Props {
@@ -6,6 +7,12 @@ interface Props {
 }
 
 const ListImages = ({ movies }: Props) => {
+    const navigation = useNavigation<any>()
+
+    const pressMovie = (movie: Movie) => {
+        console.warn(movie.id)
+        navigation.navigate("MovieDetails", { id: movie.id })
+    }
 
     return (
         <View
@@ -13,24 +20,16 @@ const ListImages = ({ movies }: Props) => {
                 flexDirection: "row"
             }}
         >
-{/*             {
-                movies.map(movie => (
-                    <Image 
-                        style={styles.image} 
-                        source={{uri: movie.poster}} 
-                        key={movie.id}
-                    />
-                ))
-            } */}
-
             <FlatList
                 data={movies}
                 renderItem={({ item }) => (
-                    <Image 
-                        style={styles.image} 
-                        source={{uri: item.poster}} 
-                        key={item.id}
-                    />
+                    <Pressable onPress={() => pressMovie(item)}>
+                        <Image 
+                            style={styles.image} 
+                            source={{uri: item.poster}} 
+                            key={item.id}
+                        />
+                    </Pressable>
                 )}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
